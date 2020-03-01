@@ -1,4 +1,5 @@
 powerbrick.RfidPresent(function () {
+    Name = powerbrick.RfidRead(powerbrick.RfidSector.S1, powerbrick.RfidBlock.B0)
     basic.showLeds(`
         # . . # .
         # . . # .
@@ -35,14 +36,19 @@ powerbrick.RfidPresent(function () {
         . # # . .
         `)
     powerbrick.rgbConnect(powerbrick.Ports.PORT2)
-    powerbrick.showRainbow(1, 360)
+    powerbrick.MotorStopAll()
+    powerbrick.MotorStopAll()
     powerbrick.Servo(powerbrick.Servos.S1, 90)
+    powerbrick.showRainbow(1, 360)
     music.beginMelody(music.builtInMelody(Melodies.Entertainer), MelodyOptions.Once)
-    basic.showString(powerbrick.RfidRead(powerbrick.RfidSector.S1, powerbrick.RfidBlock.B0))
+    basic.showString(Name)
     People += 1
+    powerbrick.Servo(powerbrick.Servos.S1, 2)
+    powerbrick.MotorStopAll()
     powerbrick.rgbClear()
+    powerbrick.MotorStopAll()
     basic.showIcon(IconNames.Happy)
-    powerbrick.Servo(powerbrick.Servos.S1, 0)
+    powerbrick.MotorStopAll()
 })
 input.onButtonPressed(Button.AB, function () {
     music.beginMelody(music.builtInMelody(Melodies.Dadadadum), MelodyOptions.Once)
@@ -58,9 +64,11 @@ input.onButtonPressed(Button.A, function () {
     basic.showIcon(IconNames.Happy)
 })
 let People = 0
+let Name = ""
+powerbrick.Servo(powerbrick.Servos.S1, 2)
 basic.showIcon(IconNames.Happy)
 basic.forever(function () {
-    while (powerbrick.Ultrasonic(powerbrick.Ports.PORT3) < 5) {
+    while (powerbrick.Ultrasonic(powerbrick.Ports.PORT3) < 10) {
         basic.showLeds(`
             . # # # .
             # . . # .
@@ -68,11 +76,10 @@ basic.forever(function () {
             . . . . .
             . . # . .
             `)
-        basic.pause(1000)
-    }
-    while (powerbrick.Ultrasonic(powerbrick.Ports.PORT3) > 5) {
+        powerbrick.Servo(powerbrick.Servos.S1, 90)
+        basic.pause(3000)
+        powerbrick.Servo(powerbrick.Servos.S1, 2)
         basic.showIcon(IconNames.Happy)
-        basic.pause(100)
     }
 })
 basic.forever(function () {
