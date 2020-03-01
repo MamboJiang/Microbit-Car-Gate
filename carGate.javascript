@@ -43,7 +43,6 @@ powerbrick.RfidPresent(function () {
     music.beginMelody(music.builtInMelody(Melodies.Entertainer), MelodyOptions.Once)
     basic.showString(Name)
     People += 1
-    powerbrick.Servo(powerbrick.Servos.S1, 2)
     powerbrick.MotorStopAll()
     powerbrick.rgbClear()
     powerbrick.MotorStopAll()
@@ -69,17 +68,11 @@ powerbrick.Servo(powerbrick.Servos.S1, 2)
 basic.showIcon(IconNames.Happy)
 basic.forever(function () {
     while (powerbrick.Ultrasonic(powerbrick.Ports.PORT3) < 10) {
-        basic.showLeds(`
-            . # # # .
-            # . . # .
-            . . # . .
-            . . . . .
-            . . # . .
-            `)
         powerbrick.Servo(powerbrick.Servos.S1, 90)
-        basic.pause(3000)
+    }
+    basic.pause(2000)
+    while (powerbrick.Ultrasonic(powerbrick.Ports.PORT3) > 10) {
         powerbrick.Servo(powerbrick.Servos.S1, 2)
-        basic.showIcon(IconNames.Happy)
     }
 })
 basic.forever(function () {
