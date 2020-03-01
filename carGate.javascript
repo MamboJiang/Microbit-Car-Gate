@@ -35,19 +35,11 @@ powerbrick.RfidPresent(function () {
         # . . # .
         . # # . .
         `)
-    powerbrick.rgbConnect(powerbrick.Ports.PORT2)
-    powerbrick.MotorStopAll()
-    powerbrick.MotorStopAll()
     powerbrick.Servo(powerbrick.Servos.S1, 90)
-    powerbrick.showRainbow(1, 360)
     music.beginMelody(music.builtInMelody(Melodies.Entertainer), MelodyOptions.Once)
     basic.showString(Name)
     People += 1
-    powerbrick.MotorStopAll()
-    powerbrick.rgbClear()
-    powerbrick.MotorStopAll()
     basic.showIcon(IconNames.Happy)
-    powerbrick.MotorStopAll()
 })
 input.onButtonPressed(Button.AB, function () {
     music.beginMelody(music.builtInMelody(Melodies.Dadadadum), MelodyOptions.Once)
@@ -67,6 +59,7 @@ let Name = ""
 powerbrick.Servo(powerbrick.Servos.S1, 2)
 basic.showIcon(IconNames.Happy)
 basic.forever(function () {
+    powerbrick.RfidProbe()
     while (powerbrick.Ultrasonic(powerbrick.Ports.PORT3) < 10) {
         powerbrick.Servo(powerbrick.Servos.S1, 90)
     }
@@ -78,6 +71,5 @@ basic.forever(function () {
 basic.forever(function () {
     powerbrick.RfidProbe()
     basic.pause(100)
-    powerbrick.rgbPixRotate(1)
     basic.pause(100)
 })
