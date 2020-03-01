@@ -62,6 +62,14 @@ input.onButtonPressed(Button.A, function () {
     basic.clearScreen()
     basic.showIcon(IconNames.Happy)
 })
+input.onButtonPressed(Button.B, function () {
+    People += -1
+    music.beginMelody(music.builtInMelody(Melodies.Dadadadum), MelodyOptions.Once)
+    basic.showString("People:")
+    basic.showNumber(People)
+    basic.clearScreen()
+    basic.showIcon(IconNames.Happy)
+})
 let People = 0
 let Name = ""
 powerbrick.Servo(powerbrick.Servos.S1, 2)
